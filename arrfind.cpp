@@ -13,7 +13,7 @@ int numfinder(int arr[], int size, int num) {
             return i;
         }
     }
-    return 0;
+    return -1;
 }
 
 int main() {
@@ -29,7 +29,12 @@ int main() {
     std::cout << "Enter number to find it: ";
     std::cin >> num;
 
-    std::cout << "This is the index, which one you were looking for: " << numfinder(arr,size,num) + 1 << std::endl;
+    if(numfinder(arr,size,num) == -1) {
+        std::cout << "This number not founded in this array, thank you for being with us!" << std::endl; //:)
+    }
+    else {
+        std::cout << "This is the index, which one you were looking for: " << numfinder(arr,size,num) + 1 << std::endl;
+    }
 
     delete[] arr;
 }
