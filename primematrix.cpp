@@ -12,6 +12,13 @@ bool isprime(int num) {
     return true;
 }
 
+void printarr(int  arr[], int size) {
+    for(int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
 void printarr(int** matrix, int size) {
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
@@ -31,21 +38,25 @@ void randomArray(int** matrix, int size) {
     }
 }
 
-void printprime(int** matrix, int size) {
+int* inputprime(int** matrix, int size) {
+    int* arr = new int[size];
+    int count = 0;
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
             if(isprime(matrix[i][j])) {
-                std::cout << matrix[i][j] << " ";
+                arr[count] = matrix[i][j];
+                count++;
             }
         }
     }
-    std::cout << std::endl;
+    return arr;
 }
 
 int main() {
     int size = 0;
     std::cout << "Enter size for matrix (NxN): " << std::endl;
     std::cin >> size;
+    std::cout << std::endl;
 
     int** matrix = new int*[size];
     for(int i = 0; i < size; ++i) {
@@ -54,10 +65,12 @@ int main() {
 
     randomArray(matrix,size);
     printarr(matrix,size);
-    printprime(matrix,size);
+    int* arr = inputprime(matrix,size);
+    printarr(arr,size);
 
     for(int i = 0; i < size; ++i) {
         delete[] matrix[i];
     }
     delete[] matrix;
+    delete[] arr;
 }
