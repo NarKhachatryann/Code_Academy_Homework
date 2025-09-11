@@ -1,17 +1,58 @@
 #include <iostream>
 
+bool winner(char** matrix, int size, char player) {
+    for (int i = 0; i < size; ++i) {
+        bool win = true;
+        for(int j = 0; j < size; ++j) {
+            if(matrix[i][j] != player) {
+                win = false;
+                break;
+            }
+        }
+        if(win) return true;
+    }
+
+    for(int j = 0; j < size; ++j) {
+        bool win = true;
+        for(int i = 0; i < size; ++i) {
+            if(matrix[i][j] != player) {
+                win = false;
+                break;
+            }
+        }
+        if(win) return true;
+    }
+
+    bool win = true;
+    for(int i = 0; i < size; ++i) {
+        if(matrix[i][i] != player) {
+            win = false;
+            break;
+        }
+    }
+    if(win) return true;
+    
+    win = true;
+    for(int i = 0; i < size; ++i) {
+        if(matrix[i][size - 1 - i] != player) {
+            win = false;
+        }
+    }
+    if(win) return true;
+
+    return win;
+}
+
 bool matrixchecker(char** matrix, int size) {
     int count = 0;
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
             if(matrix[i][j] != ' ') {
-                count++;
+                return true;
             }
         }
     }
-    if(size * size == count) return false;
-
-    return true;
+    return false;
 }
 
 void board(char** matrix, int size) {
@@ -27,10 +68,10 @@ void board(char** matrix, int size) {
 } 
 
 bool check(char** matrix, int size, int row, int col) {
-    if((row > 0 || row < 4) || (col > 0 || col < 4) ) {
+    if(row < 1 || row > size || col < 1 || col > size) {
         return false;
     }
-    else if(matrix[row][col] != ' ') {
+    else if(matrix[row - 1][col - 1] != ' ') {
         return false;
     }
     return true;
@@ -57,10 +98,18 @@ void game(char** matrix, int size) {
                 } else {
                     checker = true;
                 }
-            } while(checker == true);
+            } while(!checker);
 
         matrix[row - 1][col - 1] = player;
 
+        if(winner(matrix, size, player)) {
+            std::cout << "Player " << player << " wins!" << std::endl;
+            break;
+        }
+        if(!matrixchecker(matrix,size)) {
+            std::cout << "It is a draw" << std::endl;
+            break;
+        }
         board(matrix,size);
 
         if(player == playerx) {
@@ -69,11 +118,6 @@ void game(char** matrix, int size) {
             player = playerx;
         }
 
-        for(int i = 0; i < size; ++i) {
-            for(int j = 0; j < size; ++j) {
-            
-        }
-    }
     }
 }
 
