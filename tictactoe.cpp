@@ -40,14 +40,13 @@ bool winner(char** matrix, int size, char player) {
     }
     if(win) return true;
 
-    return win;
+    return false;
 }
 
 bool matrixchecker(char** matrix, int size) {
-    int count = 0;
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
-            if(matrix[i][j] != ' ') {
+            if(matrix[i][j] == ' ') {
                 return true;
             }
         }
@@ -121,24 +120,34 @@ void game(char** matrix, int size) {
     }
 }
 
-int main() {
-    int size = 3;
-
+char** creatematrix(int size) {
     char** matrix = new char*[size];
     for(int  i = 0; i < size; ++i) {
         matrix[i] = new char[size];
     }
-    
+
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
             matrix[i][j] = ' ';
         }
     }
 
-    game(matrix,size);
+    return matrix;
+}
 
+void deletemat(char** matrix, int size) {
     for(int i = 0; i < size; ++i) {
         delete[] matrix[i];
     }
     delete[] matrix;
+}
+
+int main() {
+    int size = 3;
+    char** matrix = creatematrix(size);
+
+    game(matrix, size);
+    deletemat(matrix, size);
+
+    return 0;
 }
