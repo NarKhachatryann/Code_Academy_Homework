@@ -17,6 +17,18 @@ int** creatematrix(int size) {
     return matrix;
 }
 
+int findbigger(int** matrix, int size) {
+    int max = matrix[0][0];
+    for(int i = 0; i < size; ++i) {
+        for(int j = 0; j < size; ++j) {
+            if(matrix[i][j] > max) {
+                max = matrix[i][j];
+            }
+        }
+    }
+    return max;
+}
+
 void deletemat(int** matrix, int size) {
     for(int i = 0; i < size; ++i) {
         delete[] matrix[i];
@@ -25,7 +37,6 @@ void deletemat(int** matrix, int size) {
 }
 
 int matrixchecker(int** matrix, int size, int target) {
-    if(target < 0) return -1;
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
             if(matrix[i][j] == target) {
@@ -46,6 +57,7 @@ void printmat(int** matrix, int size) {
 }
 
 void printmat(int** matrix, int size, int targ1, int targ2) {
+    std::cout << std::endl;
     for(int i = 0; i < size; ++i) {
         for(int j = 0; j < size; ++j) {
             if(i == targ1 || j == targ2) {
@@ -88,8 +100,7 @@ int main() {
 
     randmat(matrix, size);
     printmat(matrix, size);
-    std::cout << "Enter target: ";
-    std::cin >> target;
+    target = findbigger(matrix, size);
     decoder(matrix, size, matrixchecker(matrix, size, target));
 
     deletemat(matrix, size);
