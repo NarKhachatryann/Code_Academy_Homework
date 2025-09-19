@@ -1,13 +1,22 @@
 #include <iostream>
+#include <vector>
 
-int fib(int n) {
-    if(n <= 1) return n;
-    return fib(n - 1) + fib(n - 2);
+int fib(int n, std::vector<int>& arr) {
+    if(n <= 1) 
+        return n;
+
+    if(arr[n] != -1) 
+        return arr[n]; 
+
+    arr[n] = fib(n - 1, arr) + fib(n - 2, arr);
+    return arr[n];
 }
 
 void printfib(int n) {
+    std::vector<int> arr(n + 1, -1);
+
     for(int i = 0; i <= n; ++i) {
-        std::cout << fib(i) << " ";
+        std::cout << fib(i, arr) << " ";
     }
     std::cout << std::endl;
 }
