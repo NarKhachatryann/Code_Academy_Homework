@@ -1,7 +1,25 @@
 #include <iostream>
 
+template <typename T>
+void xmalloc(size_t size, T*& ptr) {
+    ptr = (T*)malloc(size);
+    if(ptr == NULL) {
+        std::cout << "Memory allocation failed!" << std::endl;
+    }
+}
+
+template <typename T>
+void xfree(T*& ptr) {
+    if(ptr != NULL) {
+        free(ptr);
+    }
+    ptr = nullptr;
+}
+
 void* operator new(std::size_t size) {
-    if(void* p = malloc(size)) {
+    void* p = nullptr;
+    xmalloc(size, p);
+    if(p != nullptr) {
         std::cout << "The memory has allocated!" << std::endl;
         return p;
     }
@@ -12,13 +30,15 @@ void* operator new(std::size_t size) {
 }
 
 void operator delete(void* mem) noexcept {
-    free(mem);
-    std::cout << "Memory is deallocated!" << std::endl;
+    xfree(mem);
+    std::cout << "Memory deallocated!" << std::endl;
 }
 
 void* operator new[](std::size_t size) {
-    if(void* p = malloc(size)) {
-        std::cout << "Memory is allocated" << std::endl;
+    void* p = nullptr;
+    xmalloc(size, p);
+    if(p != nullptr) {
+        std::cout << "The memory has allocated!" << std::endl;
         return p;
     }
     else {
@@ -28,7 +48,7 @@ void* operator new[](std::size_t size) {
 }
 
 void operator delete[] (void* mem) noexcept {
-    free(mem);
+    xfree(mem);
     std::cout << "Memory are deallocated" << std::endl;
 }
 

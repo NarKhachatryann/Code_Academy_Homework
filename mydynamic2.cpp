@@ -2,6 +2,22 @@
 #include <cstdlib>
 #include <ctime>
 
+template <typename T>
+void xmalloc(size_t size, T*& ptr) {
+    ptr = (T*)malloc(size);
+    if(ptr == NULL) {
+        std::cout << "Memory allocation failed!" << std::endl;
+    }
+}
+
+template <typename T>
+void xfree(T*& ptr) {
+    if(ptr != NULL) {
+        free(ptr);
+    }
+    ptr = nullptr;
+}
+
 void printarr(int arr[], int size) {
     for(int i = 0; i < size; ++i) {
         std::cout << arr[i] << " ";
@@ -17,7 +33,9 @@ void randomArray(int arr[], int size) {
 }
 
 void* operator new(std::size_t size) {
-    if(void* p = malloc(size)) {
+    void* p = nullptr;
+    xmalloc(size, p);
+    if(p != nullptr) {
         std::cout << "The memory has allocated!" << std::endl;
         return p;
     }
@@ -28,12 +46,14 @@ void* operator new(std::size_t size) {
 }
 
 void operator delete(void* mem) noexcept {
-    free(mem);
+    xfree(mem);
     std::cout << "Memory is deallocated!" << std::endl;
 }
 
 void* operator new[](std::size_t size) {
-    if(void* p = malloc(size)) {
+    void* p = nullptr;
+    xmalloc(size, p);
+    if(p != nullptr) {
         std::cout << "Memory is allocated" << std::endl;
         return p;
     }
@@ -44,7 +64,7 @@ void* operator new[](std::size_t size) {
 }
 
 void operator delete[] (void* mem) noexcept {
-    free(mem);
+    xfree(mem);
     std::cout << "Memory are deallocated" << std::endl;
 }
 

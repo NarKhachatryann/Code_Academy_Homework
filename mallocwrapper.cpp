@@ -2,7 +2,7 @@
 
 template <typename T>
 void xmalloc(size_t size, T*& ptr) {
-    ptr = (T*)malloc(size * sizeof(T));
+    ptr = (T*)malloc(size);
     if(ptr == NULL) {
         std::cout << "Memory allocation failed!" << std::endl;
     }
