@@ -17,6 +17,27 @@ class car {
     m_drive(drive), m_color(color), m_fuel(fuel), m_engine(false) {
         std::cout << "Car created!" << std::endl;
     }
+    
+    car(const car& other) {
+        m_engine = other.m_engine;
+        m_model = other.m_model;
+        m_pistons = other.m_pistons;
+        m_drive = other.m_drive;
+        m_color = other.m_color;
+        m_fuel = other.m_fuel;
+    }
+
+    car& operator= (const car& other) {
+        if(this != other) {
+            m_engine = other.m_engine;
+            m_model = other.m_model;
+            m_pistons = other.m_pistons;
+            m_drive = other.m_drive;
+            m_color = other.m_color;
+            m_fuel = other.m_fuel;
+        }
+        return *this;
+    }
 
     void change_color(std::string color) {
         m_color = color;
