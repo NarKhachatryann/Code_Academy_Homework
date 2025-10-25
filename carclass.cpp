@@ -28,7 +28,7 @@ class car {
     }
 
     car& operator= (const car& other) {
-        if(this != other) {
+        if(this != &other) {
             m_engine = other.m_engine;
             m_model = other.m_model;
             m_pistons = other.m_pistons;
