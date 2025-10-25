@@ -15,6 +15,26 @@ class Matrix {
         }
     }
 
+    Matrix(const Matrix& other) {
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                other.m_data[i][j] = m_data[i][j];
+            }
+        }
+    }
+
+    const Matrix& operator= (const Matrix& other) {
+        if(this != &other) {
+            for(int i = 0; i < m_size; ++i) {
+                for(int j = 0; j < m_size; ++j) {
+                    other.m_data[i][j] = m_data[i][j];
+                }
+            }
+        }
+
+        return *this;
+    }
+
     void init(){
         std::cout << "Enter elements for a " << m_size << "x" << m_size << " matrix:" << std::endl;
         for(int i = 0; i < m_size; ++i) {
