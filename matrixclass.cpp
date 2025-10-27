@@ -67,6 +67,20 @@ class Matrix {
         m_data[row][col] = value;
     }
 
+    void transpose() {
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = i + 1; j < m_size; ++j) {
+                std::swap(m_data[i][j], m_data[j][i]);
+            }
+        }
+        
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size / 2; ++j) {
+                std::swap(m_data[i][j], m_data[i][m_size - j - 1]);
+            }
+        }
+    }
+
     ~Matrix() {
         for(int i = 0; i < m_size; ++i) {
             delete[] m_data[i];
@@ -83,4 +97,9 @@ int main() {
     Matrix mat(size);
     mat.initRandom();
     mat.print();
+
+    mat.transpose();
+    mat.print();
+
+    return 0;
 }
