@@ -64,7 +64,7 @@ class Matrix {
                 count.m_data[i][j] = m_data[i][j] * num;
             }
         }
-        *this = count;
+        
         return count;
     }
 
