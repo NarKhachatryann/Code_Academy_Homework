@@ -12,6 +12,9 @@ class Matrix {
         m_data = new int*[m_size];
         for(int i = 0; i < m_size; ++i) {
             m_data[i] = new int[m_size];
+            for(int j = 0; j < m_size; ++j) {
+                m_data[i][j] = 0;
+            }
         }
     }
 
@@ -64,7 +67,7 @@ class Matrix {
                 count.m_data[i][j] = m_data[i][j] * num;
             }
         }
-        
+
         return count;
     }
 
