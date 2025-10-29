@@ -52,7 +52,7 @@ class Matrix {
         Matrix count(m_size);
         if(this->m_size != other.m_size) {
             std::cout << "Matrix size doesn't fit!" << std::endl;
-            return *count;
+            return count;
         }
         for(int i = 0; i < m_size; ++i) {
             for(int j = 0; j < m_size; ++j) {
