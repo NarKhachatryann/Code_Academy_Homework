@@ -71,6 +71,25 @@ class Matrix {
         return count;
     }
 
+    Matrix operator++() {
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                ++m_data[i][j];
+            }
+        }
+        return *this;
+    }
+
+    Matrix operator++(int) {
+        Matrix temp(*this);
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                ++m_data[i][j];
+            }
+        }
+        return temp;
+    }
+
     void init(){
         std::cout << "Enter elements for a " << m_size << "x" << m_size << " matrix:" << std::endl;
         for(int i = 0; i < m_size; ++i) {
