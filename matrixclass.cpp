@@ -28,7 +28,7 @@ class Matrix {
         }
     }
 
-    const Matrix& operator= (const Matrix& other) {
+    Matrix& operator= (const Matrix& other) {
         if(this != &other) {
             for(int i = 0; i < m_size; ++i) {
                 delete[] m_data[i];
