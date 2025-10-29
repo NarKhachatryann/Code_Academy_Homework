@@ -15,10 +15,12 @@ class Matrix {
         }
     }
 
-    Matrix(const Matrix& other) {
+    Matrix(const Matrix& other) : m_size(other.m_size) {
+        m_data = new int*[m_size];
         for(int i = 0; i < m_size; ++i) {
+            m_data[i] = new int[m_size];
             for(int j = 0; j < m_size; ++j) {
-                other.m_data[i][j] = m_data[i][j];
+                m_data[i][j] = other.m_data[i][j];
             }
         }
     }
@@ -26,13 +28,44 @@ class Matrix {
     const Matrix& operator= (const Matrix& other) {
         if(this != &other) {
             for(int i = 0; i < m_size; ++i) {
+                delete[] m_data[i];
+            }
+            delete[] m_data;
+
+            m_size = other.m_size;
+            m_data = new int*[m_size];
+            for(int i = 0; i < m_size; ++i) {
+                m_data[i] = new int[m_size];
                 for(int j = 0; j < m_size; ++j) {
-                    other.m_data[i][j] = m_data[i][j];
+                    m_data[i][j] = other.m_data[i][j];
                 }
             }
         }
 
         return *this;
+    }
+
+    Matrix operator* (const Matrix& other) {
+        Matrix count(m_size);
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                for(int k = 0; k < m_size; ++k) {
+                    count.m_data[i][j] += m_data[i][k] * other.m_data[k][j];
+                }
+            }
+        }
+        return count;
+    }
+
+    Matrix operator* (int num) {
+        Matrix count(*this);
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                count.m_data[i][j] = m_data[i][j] * num;
+            }
+        }
+        *this = count;
+        return count;
     }
 
     void init(){
@@ -98,7 +131,7 @@ int main() {
     mat.initRandom();
     mat.print();
 
-    mat.transpose();
+    mat = mat * 5;
     mat.print();
 
     return 0;
