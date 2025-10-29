@@ -48,7 +48,7 @@ class Matrix {
         return *this;
     }
 
-    Matrix operator* (const Matrix& other) {
+    Matrix operator* (const Matrix& other) const {
         Matrix count(m_size);
         for(int i = 0; i < m_size; ++i) {
             for(int j = 0; j < m_size; ++j) {
@@ -60,7 +60,7 @@ class Matrix {
         return count;
     }
 
-    Matrix operator* (int num) {
+    Matrix operator* (int num) const {
         Matrix count(*this);
         for(int i = 0; i < m_size; ++i) {
             for(int j = 0; j < m_size; ++j) {
