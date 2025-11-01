@@ -146,7 +146,24 @@ class Matrix {
         }
         delete[] m_data;
     }
+
+    friend std::ostream& operator<< (std::ostream& os, const Matrix& obj);
 };
+
+
+std::ostream& operator<< (std::ostream& os, const Matrix& obj) {
+    for(int i = 0; i < obj.m_size; ++i) {
+        for(int j = 0; j < obj.m_size; ++j) {
+            os << obj.m_data[i][j];
+
+            if(j < obj.m_size - 1) {
+                os << " ";
+            }
+        }
+        os << "\n";
+    }
+    return os;
+} 
 
 int main() {
     int size = 0;
@@ -158,7 +175,7 @@ int main() {
     mat.print();
 
     mat = mat * 5;
-    mat.print();
+    std::cout << "Matrix: \n" << mat << std::endl; 
 
     return 0;
 }
