@@ -3,6 +3,7 @@
 #include <ctime>
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 #include "matrix.h"
 
 Matrix::Matrix(int size) : m_size(size) {
@@ -160,4 +161,16 @@ void Matrix::savetofile(const std::string& filename) const {
     }
 
     outfile.close();
+}
+
+void Matrix::initfromfile(const std::string& filename) {
+    std::ifstream infile(filename);
+    if(infile.is_open()) {
+        for(int i = 0; i < m_size; ++i) {
+            for(int j = 0; j < m_size; ++j) {
+                infile >> m_data[i][j];
+            }
+        }
+    }
+    infile.close();
 }

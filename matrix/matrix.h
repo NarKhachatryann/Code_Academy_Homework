@@ -26,6 +26,7 @@ public:
     void pasteValue(int value, int row, int col);
     void transpose();
     void savetofile(const std::string& filename) const;
+    void initfromfile(const std::string& filename);
 
     friend std::ostream& operator<< (std::ostream& os, const Matrix& obj);
 };

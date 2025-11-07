@@ -15,6 +15,8 @@ int main() {
     mat = mat * 5;
     std::cout << "Matrix: \n" << mat << std::endl;
     mat.savetofile("matrix_output.txt");
+    mat.initfromfile("matrix_output.txt");
+    std::cout << "Matrix from file: \n" << mat << std::endl;
 
     return 0;
 }
