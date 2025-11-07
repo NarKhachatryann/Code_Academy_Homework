@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <fstream>
 #include "matrix.h"
 
 Matrix::Matrix(int size) : m_size(size) {
@@ -149,4 +150,14 @@ std::ostream& operator<<(std::ostream& os, const Matrix& obj) {
         os << "\n";
     }
     return os;
+}
+
+void Matrix::savetofile(const std::string& filename) const {
+    std::ofstream outfile(filename, std::ios::app);
+    if(outfile.is_open()) {
+        outfile << *this << std::endl;
+        outfile.close();
+    }
+
+    outfile.close();
 }

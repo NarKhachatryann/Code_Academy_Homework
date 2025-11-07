@@ -10,16 +10,11 @@ int main() {
     Matrix mat(size);
     mat.initRandom();
     mat.print();
-    if(outfile.is_open()) {
-        outfile << "Initial Matrix: \n" << mat << std::endl;
-    }
+    mat.savetofile("matrix_output.txt");
 
     mat = mat * 5;
     std::cout << "Matrix: \n" << mat << std::endl;
-    if(outfile.is_open()) {
-        outfile << "Matrix: \n" << mat << std::endl;
-        outfile.close();
-    }
+    mat.savetofile("matrix_output.txt");
 
     return 0;
 }
