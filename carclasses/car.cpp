@@ -1,10 +1,12 @@
-#include "car.h"
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include "car.h"
+
 
 car::car(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
-    : m_model(model), m_pistons(pistons), m_drive(drive), m_color(color), m_fuel(fuel), m_engine(false) {
+    : m_model(model), m_pistons(pistons), m_drive(drive), m_color(color), m_fuel(fuel) {
+        m_engine = Engine();
     std::cout << "Car created!" << std::endl;
 }
 
@@ -39,7 +41,7 @@ void car::print() {
     std::cout << "Car Drive: " << m_drive << std::endl;
     std::cout << "Color: " << m_color << std::endl;
     std::cout << "Fuel type: " << m_fuel << std::endl;
-    if (m_engine) {
+    if (m_engine.isRunning()) {
         std::cout << "The Engine is running" << std::endl;
     } else {
         std::cout << "The engine is turned off" << std::endl;
@@ -47,17 +49,17 @@ void car::print() {
 }
 
 void car::engine(bool engine) {
-    if (engine && m_engine) {
+    if (engine && m_engine.isRunning()) {
         std::cout << "The Engine is already running" << std::endl;
-        m_engine = true;
-    } else if (!m_engine && engine) {
+        m_engine.start();
+    } else if (!m_engine.isRunning() && engine) {
         std::cout << "The engine starts..." << std::endl;
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        m_engine = true;
+        m_engine.start();
         std::cout << "The Engine is running" << std::endl;
-    } else if (m_engine && !engine) {
+    } else if (m_engine.isRunning() && !engine) {
         std::cout << "The engine turns off" << std::endl;
-        m_engine = false;
+        m_engine.stop();
     }
 }
 

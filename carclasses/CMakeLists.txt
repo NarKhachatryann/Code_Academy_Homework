@@ -6,4 +6,4 @@ project(Cars CXX) # CXX-ը ցույց է տալիս, որ սա C++ նախագի�
 
 # 3. Ավելացնում ենք Գործարկվող Թիրախը (Executable Target)
 # a.out անունով ֆայլը կստեղծվի main.cpp ելակետային կոդից
-add_executable(a.out main.cpp car.cpp)
+add_executable(a.out main.cpp car.cpp engine.cpp)

@@ -2,10 +2,11 @@
 #define CAR_H
 
 #include <string>
+#include "engine.h"
 
 class car {
 private:
-    bool m_engine;
+    Engine m_engine;
     std::string m_model;
     std::string m_pistons;
     std::string m_drive;
