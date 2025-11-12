@@ -66,3 +66,30 @@ void car::engine(bool engine) {
 car::~car() {
     std::cout << "Car is deleted" << std::endl;
 }
+
+Mercedes::Mercedes(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+    : car(model, pistons, drive, color, fuel) {
+    std::cout << "Mercedes is created" << std::endl;
+}
+
+Mercedes::~Mercedes() {
+    std::cout << "Mercedes is deleted" << std::endl;
+}
+
+BMW::BMW(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+    : car(model, pistons, drive, color, fuel) {
+    std::cout << "BMW is created" << std::endl;
+}
+
+BMW::~BMW() {
+    std::cout << "BMW is deleted" << std::endl;
+}
+
+Audi::Audi(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+    : car(model, pistons, drive, color, fuel) {
+    std::cout << "Audi is created" << std::endl;
+}
+
+Audi::~Audi() {
+    std::cout << "Audi is deleted" << std::endl;
+}

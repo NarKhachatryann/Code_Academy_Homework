@@ -25,4 +25,26 @@ public:
     ~car();
 };
 
+class Mercedes : public car {
+public:
+    Mercedes(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+        : car(model, pistons, drive, color, fuel) {}
+
+    ~Mercedes() {}
+};
+
+class BMW : public car {
+public:
+    BMW(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+        : car(model, pistons, drive, color, fuel) {}
+    ~BMW() {}
+};
+
+class Audi : public car {
+public:
+    Audi(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
+        : car(model, pistons, drive, color, fuel) {}
+    ~Audi() {}
+};
+
 #endif
