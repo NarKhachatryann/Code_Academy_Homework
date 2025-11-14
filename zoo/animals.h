@@ -147,7 +147,7 @@ class Snake : public Animal {
     }
 };
 
-int main() {
+/* int main() {
     Dog dog("Buddy", "Golden Retriever", "Golden", 60.0, 30.0, 3);
     Cat cat("Whiskers", "Siamese", "Cream", 25.0, 5.0, 2);
     Bird bird("Tweety", "Canary", "Yellow", 15.0, 0.2, 1);
@@ -163,4 +163,4 @@ int main() {
     snake.makeSound();
 
     return 0;
-}
+} */
