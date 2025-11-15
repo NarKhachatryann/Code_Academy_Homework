@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(SOURCES
     main.cpp
     zoo.cpp
+    animals.cpp
 )
 
 # Create executable

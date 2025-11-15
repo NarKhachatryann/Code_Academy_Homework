@@ -1,149 +1,103 @@
-#include <iostream>
+#ifndef ANIMALS_H
+#define ANIMALS_H
+
 #include <string>
+#include <iostream>
 
 class Animal {
-    protected:
+protected:
     std::string m_name;
 public:
     Animal() = default;
-    Animal(const std::string& name) : m_name(name) {}
+    Animal(const std::string& name);
     virtual ~Animal() = default;
 
     virtual void makeSound() const = 0;
-
-    std::string getName() const {
-        return m_name;
-    }
+    std::string getName() const;
 };
 
 class Dog : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Dog(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) : Animal(name), m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("Woof!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
 class Cat : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Cat(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) : Animal(name), m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("Meow!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
 class Bird : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Bird(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) : Animal(name), m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("Chirik!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
 class Fish : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Fish(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) : Animal(name), m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("Blub!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
 class Horse : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Horse(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) :Animal(name) , m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("Neigh!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
 class Snake : public Animal {
-    private:
+private:
     std::string m_breed;
     std::string m_color;
     double m_height;
     double m_weight;
     int m_age;
     std::string sound;
-
-    public:
+public:
     Snake(const std::string& name, const std::string& breed, const std::string& color,
-        double height, double weight, int age) : Animal(name), m_breed(breed), m_color(color), m_height(height), 
-            m_weight(weight), m_age(age), sound("shhhh!") {}
-
-    void makeSound() const override {
-        std::cout << sound << std::endl;
-    }
+        double height, double weight, int age);
+    void makeSound() const override;
 };
 
-/* int main() {
-    Dog dog("Buddy", "Golden Retriever", "Golden", 60.0, 30.0, 3);
-    Cat cat("Whiskers", "Siamese", "Cream", 25.0, 5.0, 2);
-    Bird bird("Tweety", "Canary", "Yellow", 15.0, 0.2, 1);
-    Fish fish("Nemo", "Clownfish", "Orange", 10.0, 0.5, 1);
-    Horse horse("Star", "Arabian", "Brown", 160.0, 400.0, 5);
-    Snake snake("Slither", "Python", "Green", 200.0, 50.0, 4);
-
-    dog.makeSound();
-    cat.makeSound();
-    bird.makeSound();
-    fish.makeSound();
-    horse.makeSound();
-    snake.makeSound();
-
-    return 0;
-} */
+#endif
