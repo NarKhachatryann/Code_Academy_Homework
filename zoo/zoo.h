@@ -11,10 +11,10 @@ private:
 
 public:
     zoo(int animalCount = 100);
-    void addAnimal(Animal* animal) {}
-    void makeAllSounds() const {}
+    void addAnimal(Animal* animal);
+    void makeAllSounds() const;
 
-    ~zoo() {}
+    ~zoo();
 };
 
 #endif
