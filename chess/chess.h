@@ -15,6 +15,8 @@ public:
     void setPlace(int row, int col, char piece);
     char getPiece(int row, int col) const;
     bool isempty(int row, int col) const;
+
+    virtual ~chessboard() = default;
 };
 
 #endif
