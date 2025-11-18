@@ -1,6 +1,17 @@
 #include <iostream>
 #include "chess.h"
 
+chessboard::chessboard(int size) : Matrix(size) {}
+
+chessboard::chessboard(const chessboard& other) : Matrix(other) {}
+
+chessboard& chessboard::operator=(const chessboard& other) {
+    if (this != &other) {
+        Matrix::operator=(other);
+    }
+    return *this;
+}
+
 void chessboard::initChessboard() {
     const char* initial[8] = {
         "rnbqkbnr",

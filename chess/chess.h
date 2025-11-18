@@ -5,7 +5,10 @@
 
 class chessboard : public Matrix {
 public:
-    chessboard(int size = 8) : Matrix(size) {}
+    chessboard(int size);
+    chessboard(const chessboard& other);
+
+    chessboard& operator=(const chessboard& other);
 
     void initChessboard();
     void printChessboard() const;
