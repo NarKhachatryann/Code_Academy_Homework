@@ -11,7 +11,7 @@ private:
 public:
     Matrix(int size);
     Matrix(const Matrix& other);
-    ~Matrix();
+    virtual ~Matrix();
 
     Matrix& operator=(const Matrix& other);
 
