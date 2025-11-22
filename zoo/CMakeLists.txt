@@ -12,6 +12,7 @@ set(SOURCES
     main.cpp
     zoo.cpp
     animals.cpp
+    amphibian.cpp
 )
 
 # Create executable

@@ -16,6 +16,24 @@ public:
     std::string getName() const;
 };
 
+class swimmer {
+    public:
+    virtual void swim() const = 0;
+    virtual ~swimmer() = default;
+};
+
+class flyer {
+    public:
+    virtual void fly() const = 0;
+    virtual ~flyer() = default;
+};
+
+class walker {
+    public:
+    virtual void walk() const = 0;
+    virtual ~walker() = default;
+};
+
 class Dog : public Animal {
 private:
     std::string m_breed;
