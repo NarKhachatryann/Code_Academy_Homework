@@ -11,9 +11,11 @@ public:
     Animal() = default;
     Animal(const std::string& name);
     virtual ~Animal() = default;
+    Animal(Animal&& other) noexcept;
 
     virtual void makeSound() const = 0;
     std::string getName() const;
+    Animal& operator= (Animal&& other) noexcept;
 };
 
 class swimmer {

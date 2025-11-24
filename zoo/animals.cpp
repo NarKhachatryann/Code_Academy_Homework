@@ -3,6 +3,15 @@
 Animal::Animal(const std::string& name) : m_name(name) {}
 std::string Animal::getName() const { return m_name; }
 
+Animal::Animal(Animal&& other) noexcept : m_name(std::move(other.m_name)) {}
+
+Animal& Animal::operator= (Animal&& other) noexcept {
+    if (this != &other) {
+        m_name = std::move(other.m_name);
+    }
+    return *this;
+}
+
 Dog::Dog(const std::string& name, const std::string& breed, const std::string& color,
          double height, double weight, int age)
     : Animal(name), m_breed(breed), m_color(color),
