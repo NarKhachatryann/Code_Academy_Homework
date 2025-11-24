@@ -12,6 +12,15 @@ chessboard& chessboard::operator=(const chessboard& other) {
     return *this;
 }
 
+chessboard::chessboard(chessboard&& other) noexcept : Matrix(std::move(other)) {}
+
+chessboard& chessboard::operator=(chessboard&& other) noexcept {
+    if (this != &other) {
+        Matrix::operator=(std::move(other));
+    }
+    return *this;
+}
+
 void chessboard::initChessboard() {
     const char* initial[8] = {
         "rnbqkbnr",

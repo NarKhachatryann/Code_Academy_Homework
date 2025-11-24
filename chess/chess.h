@@ -6,9 +6,12 @@
 class chessboard : public Matrix {
 public:
     chessboard(int size);
-    chessboard(const chessboard& other);
 
+    chessboard(const chessboard& other);
     chessboard& operator=(const chessboard& other);
+
+    chessboard(chessboard&& other) noexcept;
+    chessboard& operator=(chessboard&& other) noexcept;
 
     void initChessboard();
     void printChessboard() const;
