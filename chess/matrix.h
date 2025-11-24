@@ -14,6 +14,8 @@ public:
     virtual ~Matrix();
 
     Matrix& operator=(const Matrix& other);
+    Matrix& operator=(Matrix&& other) noexcept;
+    Matrix(Matrix&& other) noexcept;
 
     void pasteValue(char value, int row, int col);
     char getElement(int row, int col) const;

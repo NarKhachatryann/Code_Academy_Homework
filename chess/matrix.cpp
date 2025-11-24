@@ -49,6 +49,28 @@ Matrix& Matrix::operator=(const Matrix& other) {
     return *this;
 }
 
+Matrix::Matrix(Matrix&& other) noexcept : m_data(other.m_data), m_size(other.m_size) {
+    other.m_size = 0;
+    other.m_data = nullptr;
+}
+
+Matrix& Matrix::operator=(Matrix&& other) noexcept {
+    if(this != &other) {
+        for(int i = 0; i < m_size; ++i) {
+            delete[] m_data[i];
+        }
+        delete[] m_data;
+
+        m_data = other.m_data;
+        m_size = other.m_size;
+
+        other.m_data = nullptr;
+        other.m_size = 0;
+    }
+    
+    return *this;
+}
+
 void Matrix::pasteValue(char value, int row, int col) {
     m_data[row][col] = value;
 }
