@@ -6,6 +6,7 @@
 car::car(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel)
     : m_model(model), m_pistons(pistons), m_drive(drive), m_color(color), m_fuel(fuel), m_engine(false) {
     std::cout << "Car created!" << std::endl;
+    ++count;
 }
 
 car::car(const car& other) {
@@ -15,6 +16,8 @@ car::car(const car& other) {
     m_drive = other.m_drive;
     m_color = other.m_color;
     m_fuel = other.m_fuel;
+
+    ++count;
 }
 
 car& car::operator=(const car& other) {
@@ -26,12 +29,20 @@ car& car::operator=(const car& other) {
         m_color = other.m_color;
         m_fuel = other.m_fuel;
     }
+
+    ++count;
     return *this;
 }
 
 void car::change_color(std::string color) {
     m_color = color;
 }
+
+int car::get_count() {
+    return count;
+}
+
+int car::count = 0;
 
 void car::print() {
     std::cout << "Car model: " << m_model << std::endl;
@@ -66,4 +77,5 @@ std::string car::get_model() const {
 
 car::~car() {
     std::cout << "Car is deleted" << std::endl;
+    --count;
 }

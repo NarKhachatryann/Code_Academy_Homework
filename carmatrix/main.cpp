@@ -7,5 +7,6 @@ int main() {
     garage.startAllEngines();
     garage.changeColorAll("Red");
     garage.print();
+    std::cout << "Total cars in garage: " << garage.getCarCount() << std::endl;
     return 0;
 }

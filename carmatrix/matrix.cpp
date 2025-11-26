@@ -60,6 +60,10 @@ Matrix& Matrix::operator=(const Matrix& other) {
     return *this;
 }
 
+int Matrix::getCarCount() const {
+    return car::get_count();
+}
+
 void Matrix::pasteCar(const car& c, int row, int col) {
     if (row >= 0 && row < m_size && col >= 0 && col < m_size) {
         delete m_data[row][col];

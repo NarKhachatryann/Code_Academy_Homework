@@ -12,10 +12,13 @@ private:
     std::string m_color;
     std::string m_fuel;
 
+    static int count;
+
 public:
     car(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel);
     car(const car& other);
     car& operator=(const car& other);
+    static int get_count();
     void change_color(std::string color);
     void print();
     void engine(bool engine);

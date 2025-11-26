@@ -21,6 +21,7 @@ public:
     void pasteCar(const car& c, int row, int col);
     void startAllEngines();
     void changeColorAll(const std::string& color);
+    int getCarCount() const;
 
     friend std::ostream& operator<<(std::ostream& os, const Matrix& obj);
 };
