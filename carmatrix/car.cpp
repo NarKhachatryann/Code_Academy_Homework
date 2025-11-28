@@ -30,8 +30,33 @@ car& car::operator=(const car& other) {
         m_fuel = other.m_fuel;
     }
 
-    ++count;
     return *this;
+}
+
+car& car::operator=(car&& other) {
+    if (this != &other) {
+        m_engine = other.m_engine;
+        m_model = std::move(other.m_model);
+        m_pistons = std::move(other.m_pistons);
+        m_drive = std::move(other.m_drive);
+        m_color = std::move(other.m_color);
+        m_fuel = std::move(other.m_fuel);
+
+        other.m_engine = false;
+    }
+
+    return *this;
+}
+
+car::car(car&& other) {
+    m_engine = other.m_engine;
+    m_model = std::move(other.m_model);
+    m_pistons = std::move(other.m_pistons);
+    m_drive = std::move(other.m_drive);
+    m_color = std::move(other.m_color);
+    m_fuel = std::move(other.m_fuel);
+
+    other.m_engine = false;
 }
 
 void car::change_color(std::string color) {
