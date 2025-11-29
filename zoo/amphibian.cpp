@@ -1,6 +1,6 @@
 #include "amphibian.h"
 
-Amphibian::Amphibian(const std::string& name) : Animal(name) {}
+Amphibian::Amphibian(const std::string& name, double weight) : Animal(name, weight) {}
 
 void Amphibian::makeSound() const {
     std::cout << m_name << " the amphibian croaks." << std::endl;

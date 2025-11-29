@@ -7,15 +7,21 @@
 class Animal {
 protected:
     std::string m_name;
+    double m_weight;
 public:
     Animal() = default;
-    Animal(const std::string& name);
+    Animal(const std::string& name, double weight);
     virtual ~Animal() = default;
     Animal(Animal&& other) noexcept;
 
     virtual void makeSound() const = 0;
     std::string getName() const;
+    double getWeight() const;
+    
     Animal& operator= (Animal&& other) noexcept;
+    bool operator< (const Animal& other) const;
+    bool operator== (const Animal& other) const;
+    bool operator> (const Animal& other) const;
 };
 
 class swimmer {
@@ -41,7 +47,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
@@ -55,7 +60,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
@@ -69,7 +73,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
@@ -83,7 +86,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
@@ -97,7 +99,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
@@ -111,7 +112,6 @@ private:
     std::string m_breed;
     std::string m_color;
     double m_height;
-    double m_weight;
     int m_age;
     std::string sound;
 public:
