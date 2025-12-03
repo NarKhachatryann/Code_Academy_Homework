@@ -40,4 +40,6 @@ private:
     void copy_data(const Matrix& other);
 };
 
+#include "matrix.cpp"
+
 #endif

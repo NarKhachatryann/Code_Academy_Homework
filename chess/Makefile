@@ -177,29 +177,29 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-matrix.o: matrix.cpp.o
-.PHONY : matrix.o
+piece.o: piece.cpp.o
+.PHONY : piece.o
 
 # target to build an object file
-matrix.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/matrix.cpp.o
-.PHONY : matrix.cpp.o
+piece.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/piece.cpp.o
+.PHONY : piece.cpp.o
 
-matrix.i: matrix.cpp.i
-.PHONY : matrix.i
+piece.i: piece.cpp.i
+.PHONY : piece.i
 
 # target to preprocess a source file
-matrix.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/matrix.cpp.i
-.PHONY : matrix.cpp.i
+piece.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/piece.cpp.i
+.PHONY : piece.cpp.i
 
-matrix.s: matrix.cpp.s
-.PHONY : matrix.s
+piece.s: piece.cpp.s
+.PHONY : piece.s
 
 # target to generate assembly for a file
-matrix.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/matrix.cpp.s
-.PHONY : matrix.cpp.s
+piece.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/a.out.dir/build.make CMakeFiles/a.out.dir/piece.cpp.s
+.PHONY : piece.cpp.s
 
 # Help Target
 help:
@@ -216,9 +216,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... matrix.o"
-	@echo "... matrix.i"
-	@echo "... matrix.s"
+	@echo "... piece.o"
+	@echo "... piece.i"
+	@echo "... piece.s"
 .PHONY : help
 
 
