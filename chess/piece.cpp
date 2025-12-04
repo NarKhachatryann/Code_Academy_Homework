@@ -21,25 +21,50 @@ bool piece::isWhite() const {
 pawn::pawn(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'P' : 'p', isWhite) {}
 
+piece* pawn::clone() const {
+        return new pawn(*this);
+}
+
 bishop::bishop(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'B' : 'b', isWhite) {}
+
+piece* bishop::clone() const {
+        return new bishop(*this);
+}
 
 knight::knight(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'N' : 'n', isWhite) {}
 
+piece* knight::clone() const {
+        return new knight(*this);
+}
+
 rook::rook(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'R' : 'r', isWhite) {}
+
+piece* rook::clone() const {
+        return new rook(*this);
+}
 
 queen::queen(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'Q' : 'q', isWhite) {}
 
+piece* queen::clone() const {
+        return new queen(*this);
+}
+
 king::king(int row, int col, bool isWhite)
     : piece(row, col, isWhite ? 'K' : 'k', isWhite) {}
 
+piece* king::clone() const {
+        return new king(*this);
+}
 
 bool piece::isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const {
-    if (m_row == newRow && m_col == newCol) {
-        return false;
+    if (newRow < 0 || newRow >= board.getSize() ||
+        newCol < 0 || newCol >= board.getSize()) {
+        
+            return false;
     }
 
     piece* targetPiece = board.getElement(newRow, newCol);

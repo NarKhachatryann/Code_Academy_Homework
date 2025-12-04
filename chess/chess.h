@@ -13,6 +13,7 @@ public:
     piece(int row, int col, char type, bool isWhite);
     piece(const piece& other);
     piece() = default;
+    virtual piece* clone() const = 0;
     virtual ~piece() = default;
 
     virtual bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const;
@@ -24,6 +25,7 @@ public:
 class pawn : public piece {
 public:
     pawn(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
@@ -31,6 +33,7 @@ public:
 class bishop : public piece {
 public:
     bishop(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
@@ -38,6 +41,7 @@ public:
 class knight : public piece {
 public:
     knight(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
@@ -45,6 +49,7 @@ public:
 class rook : public piece {
 public:
     rook(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
@@ -52,6 +57,7 @@ public:
 class queen : public piece {
 public:
     queen(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
@@ -59,29 +65,30 @@ public:
 class king : public piece {
 public:
     king(int row, int col, bool isWhite);
+    piece* clone() const override;
 
     bool isvalidmove(int newRow, int newCol, const Matrix<piece*>& board) const override;
 };
 
 class chessboard : public Matrix<piece*> {
-private:
-    const int m_size = 8;
-
 public:
+    static constexpr int BOARD_SIZE = 8;
+
     chessboard();
 
     chessboard(const chessboard& other);
     chessboard& operator=(const chessboard& other);
-
-    chessboard(chessboard&& other) noexcept;
-    chessboard& operator=(chessboard&& other) noexcept;
 
     void initChessboard();
     void printChessboard() const;
     char getPiece(int row, int col) const;
     bool isempty(int row, int col) const;
 
-    virtual ~chessboard() = default;
+    chessboard(chessboard&& other) noexcept = delete;
+    chessboard& operator=(chessboard&& other) noexcept = delete;
+
+
+    virtual ~chessboard();
 };
 
 #endif

@@ -17,9 +17,10 @@ public:
     Matrix(Matrix&& other) noexcept;
     virtual ~Matrix();
 
-    Matrix& operator=(const Matrix& other);
+    Matrix& operator=(Matrix other);
     Matrix& operator=(Matrix&& other) noexcept;
 
+    void swap(Matrix& other) noexcept;
     void setElement(int row, int col, T value);
     T getElement(int row, int col) const;
     int getSize() const;

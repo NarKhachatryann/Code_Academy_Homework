@@ -1,32 +1,52 @@
 #include <iostream>
 #include "chess.h"
 
-chessboard::chessboard() : Matrix<piece*>(m_size) {
+static constexpr int BOARD_SIZE = 8;
+
+chessboard::chessboard() : Matrix<piece*>(BOARD_SIZE) {
     initChessboard();
 }
 
-chessboard::chessboard(const chessboard& other) : Matrix(other) {}
+chessboard::chessboard(const chessboard& other)
+    : Matrix(other.getSize())
+{
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            piece* p = other.getElement(i, j);
+            this->setElement(i, j, p ? p->clone() : nullptr);
+        }
+}
 
 chessboard& chessboard::operator=(const chessboard& other) {
     if (this != &other) {
+
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            for (int j = 0; j < BOARD_SIZE; ++j)
+                delete this->getElement(i, j);
+
         Matrix::operator=(other);
+
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            for (int j = 0; j < BOARD_SIZE; ++j) {
+                piece* p = other.getElement(i, j);
+                this->setElement(i, j, p ? p->clone() : nullptr);
+            }
     }
     return *this;
 }
 
-chessboard::chessboard(chessboard&& other) noexcept : Matrix(std::move(other)) {}
 
-chessboard& chessboard::operator=(chessboard&& other) noexcept {
-    if (this != &other) {
-        Matrix::operator=(std::move(other));
+chessboard::~chessboard() {
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            delete this->getElement(i, j);
+        }
     }
-    return *this;
 }
 
 void chessboard::initChessboard() {
-    for (int i = 0; i < m_size; ++i) {
-        for (int j = 0; j < m_size; ++j) {
-            delete this->getElement(i, j); 
+    for (int i = 0; i < BOARD_SIZE; ++i) {
+        for (int j = 0; j < BOARD_SIZE; ++j) {
             this->setElement(i, j, nullptr);
         }
     }
@@ -42,7 +62,7 @@ void chessboard::initChessboard() {
     this->setElement(0, 6, new knight(0, 6, isBlack));
     this->setElement(0, 7, new rook(0, 7, isBlack));
 
-    for (int j = 0; j < m_size; ++j) {
+    for (int j = 0; j < BOARD_SIZE; ++j) {
         this->setElement(1, j, new pawn(1, j, isBlack));
     }
 
@@ -57,7 +77,7 @@ void chessboard::initChessboard() {
     this->setElement(7, 6, new knight(7, 6, isWhite));
     this->setElement(7, 7, new rook(7, 7, isWhite));
 
-    for (int j = 0; j < m_size; ++j) {
+    for (int j = 0; j < BOARD_SIZE; ++j) {
         this->setElement(6, j, new pawn(6, j, isWhite));
     }
 }
@@ -83,5 +103,6 @@ char chessboard::getPiece(int row, int col) const {
 }
 
 bool chessboard::isempty(int row, int col) const {
-    return (this->getElement(row, col)) ->m_type == '.';
+    piece* p = this->getElement(row, col);
+    return p == nullptr;
 }
