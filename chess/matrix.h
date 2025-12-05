@@ -41,6 +41,6 @@ private:
     void copy_data(const Matrix& other);
 };
 
-#include "matrix.cpp"
+#include "matrix_impl.h"
 
 #endif
