@@ -12,6 +12,7 @@ int main() {
     myZoo.addAnimal(new Snake("Slither", "Python", "Green", 200.0, 50.0, 4));
 
     myZoo.makeAllSounds();
+    checkifanimal(myZoo.getAnimal(0));
 
     return 0;
 }

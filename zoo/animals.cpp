@@ -70,3 +70,11 @@ Snake::Snake(const std::string& name, const std::string& breed, const std::strin
       m_height(height), m_age(age), sound("Shhhh!") {}
 
 void Snake::makeSound() const { std::cout << sound << std::endl; }
+
+void checkifanimal(Animal *obj) {
+	if(dynamic_cast<Animal*>(obj)) {
+		std::cout << "It's an animal!" << std::endl;
+	} else {
+		std::cout << "It's not an animal!" << std::endl;
+	}
+}

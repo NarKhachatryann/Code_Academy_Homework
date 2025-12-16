@@ -13,6 +13,7 @@ public:
     zoo(int animalCount = 100);
     void addAnimal(Animal* animal);
     void makeAllSounds() const;
+    Animal* getAnimal(int index) const;
 
     ~zoo();
 };

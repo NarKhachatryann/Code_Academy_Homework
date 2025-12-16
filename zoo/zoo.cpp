@@ -16,6 +16,13 @@ void zoo::makeAllSounds() const {
     }
 }
 
+Animal* zoo::getAnimal(int index) const {
+    if(index >= 0 && index < m_currentIndex) {
+        return m_animals[index];
+    }
+    return nullptr;
+}
+
 zoo::~zoo() {
     for(int i = 0; i < m_currentIndex; ++i) {
         delete m_animals[i];

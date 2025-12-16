@@ -24,6 +24,8 @@ public:
     bool operator> (const Animal& other) const;
 };
 
+void checkifanimal(Animal *obj);
+
 class swimmer {
     public:
     virtual void swim() const = 0;
