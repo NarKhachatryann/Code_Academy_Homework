@@ -2,6 +2,7 @@
 #include <string>
 #include <chrono>
 #include <thread>
+#include <vector>
 
 class car {
     private:
@@ -29,6 +30,14 @@ class car {
         m_fuel = other.m_fuel;
     }
 
+    car(car&& other) noexcept
+        : m_engine(other.m_engine),
+          m_model(std::move(other.m_model)),
+          m_pistons(std::move(other.m_pistons)),
+          m_drive(std::move(other.m_drive)),
+          m_color(std::move(other.m_color)),
+          m_fuel(std::move(other.m_fuel)) {}
+
     void init(std::string model, std::string pistons, std::string drive, std::string color, std::string fuel) {
         m_model = model;
         m_pistons = pistons;
@@ -47,6 +56,18 @@ class car {
             m_drive = other.m_drive;
             m_color = other.m_color;
             m_fuel = other.m_fuel;
+        }
+        return *this;
+    }
+
+    car& operator= (car&& other) noexcept {
+        if(this != &other) {
+            m_engine = other.m_engine;
+            m_model = std::move(other.m_model);
+            m_pistons = std::move(other.m_pistons);
+            m_drive = std::move(other.m_drive);
+            m_color = std::move(other.m_color);
+            m_fuel = std::move(other.m_fuel);
         }
         return *this;
     }
@@ -97,57 +118,53 @@ class car {
 
 class parking {
     private:
-    car* m_cars;
+    std::vector<car> m_cars;
     int m_capacity;
-    int m_size;
+
+    parking(int capacity = 0) : m_capacity(capacity) {}
 
     public:
-    parking(int capacity) : m_capacity(capacity), m_size(0) {
-        m_cars = new car[capacity];
+
+    static parking& getInstance(int capacity = 0) {
+        static parking instance(capacity);
+        return instance;
     }
 
-    bool addcar(const car& newcar) {
-        if(m_size < m_capacity) {
-            m_cars[m_size] = newcar;
-            m_size++;
-            return true;
-        } else {
-            std::cout << "Parking is full!" << std::endl;
-            return false;
-        }
+    void init(int capacity) {
+        m_capacity = capacity;
+        m_cars.clear();
+        
     }
+
+    template<typename... Args>
+    bool addcar(Args&&... args) {
+        if (m_cars.size() < m_capacity) {
+            m_cars.emplace_back(std::forward<Args>(args)...);
+            return true;
+        }
+        std::cout << "Parking is full!\n";
+        return false;
+    }
+
 
     bool removecar(const car& oldcar) {
-        for(int i = 0; i < m_size; ++i) {
-            if(m_cars[i] == oldcar) {
-                for(int j = i; j < m_size - 1; ++j) {
-                    m_cars[j] = m_cars[j + 1];
-                }
-                m_size--;
+        for(auto it = m_cars.begin(); it != m_cars.end(); ++it) {
+            if(*it == oldcar) {
+                m_cars.erase(it);
                 return true;
             }
         }
         return false;
     }
-
-    ~parking() {
-        delete[] m_cars;
-    }
 };
 
 int main() {
-    parking myParking(2);
+    auto p = parking::getInstance(2);
+    p.init(2);
 
-    car car1("Toyota", "4", "FWD", "Red", "Gasoline");
-    car car2("Honda", "4", "AWD", "Blue", "Diesel");
-    car car3("Ford", "6", "RWD", "Black", "Gasoline");
-
-    myParking.addcar(car1);
-    myParking.addcar(car2);
-    myParking.addcar(car3);
-
-    myParking.removecar(car1);
-    myParking.addcar(car3);
+    p.addcar("ModelX", "4", "AWD", "Red", "Electric");
+    p.addcar("ModelY", "4", "AWD", "Blue", "Electric");
+    p.addcar("ModelZ", "6", "RWD", "Black", "Electric");
 
     return 0;
 }
