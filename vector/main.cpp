@@ -1,5 +1,5 @@
 #include <iostream>
-#include "vector.h"
+#include "vector.hpp"
 
 int main() {
     vector<int> vec = {1, 2, 3, 4, 5};
