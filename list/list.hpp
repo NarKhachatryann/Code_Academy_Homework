@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+namespace mylist {
 template<typename T>
 class list {
 private:
@@ -13,15 +14,14 @@ private:
     };
 
     node* head;
-    size_t m_size;
 
 public:
-    list() : head(nullptr), m_size(0) {}
+    list() : head(nullptr) {}
     ~list() {
         clear();
     }
 
-    list(const list& other) : head(nullptr), m_size(0){
+    list(const list& other) : head(nullptr){
         node* cur = other.head;
 
         while (cur)
@@ -34,9 +34,7 @@ public:
 
     list(list&& other) noexcept {
         head = other.head;
-        m_size = other.m_size;
         other.head = nullptr;
-        other.m_size = 0;
     }
 
     list& operator=(const list& other) {
@@ -59,9 +57,7 @@ public:
         clear();
 
         head = other.head;
-        m_size = other.m_size;
         other.head = nullptr;
-        other.m_size = 0;
 
         return *this;
     }
@@ -77,14 +73,16 @@ public:
             }
             cur ->next = newNode;
         }
-        m_size++;
+    }
+
+    void insert(size_t index, const T& value) {
+        
     }
 
     void push_front(const T& value) {
         node* temp = head;
         head = new node(value);
         head->next = temp;
-        m_size++;
     }
 
     void pop_front() {
@@ -92,7 +90,6 @@ public:
         node* temp = head;
         head = head ->next;
         delete temp;
-        m_size--;
     }
 
     void pop_back() {
@@ -110,7 +107,6 @@ public:
             delete cur ->next;
             cur -> next = nullptr;
         }
-        --m_size;
     }
 
     void print() const {
@@ -122,12 +118,8 @@ public:
         std::cout << std::endl;
     }
 
-    size_t size() const {
-        return m_size;
-    }
-
     bool empty() const {
-        return m_size == 0;
+        return head == nullptr;
     }
 
     void clear() {
@@ -136,6 +128,6 @@ public:
             head = head->next;
             delete temp;
         }
-        m_size = 0;
     }
+};
 };
