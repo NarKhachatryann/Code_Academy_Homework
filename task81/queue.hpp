@@ -1,4 +1,4 @@
-#include "../list/list.hpp"
+#include "list.hpp"
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
 
