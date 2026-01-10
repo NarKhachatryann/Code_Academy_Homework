@@ -74,8 +74,8 @@ public:
 
     void push_back(const T& value) {
         if(m_size == m_capacity) {
-            capacity = (m_capacity == 0) ? 1 : m_capacity * 2;
-            T* new_data = new T[capacity];
+            size_t new_capacity = (m_capacity == 0) ? 1 : m_capacity * 2;
+            T* new_data = new T[new_capacity];
 
             for (size_t i = 0; i < m_size; i++)
             {
@@ -83,7 +83,7 @@ public:
             }
             delete[] m_data;
             m_data = new_data;
-            m_capacity = capacity;
+            m_capacity = new_capacity;
             
         }
         m_data[m_size++] = value;
